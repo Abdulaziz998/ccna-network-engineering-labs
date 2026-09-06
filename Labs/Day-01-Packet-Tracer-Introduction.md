@@ -99,7 +99,3 @@ The completed saved file will be added as `Labs/day-01-packet-tracer-introductio
 - Packet Tracer's automatic connection tool helps with initial cabling practice.
 - Placing and connecting devices is only the first stage of building a network. Interface state, addressing, routing, and traffic tests need their own verification.
 - A useful lab record distinguishes what is visible in a screenshot from what still needs to be tested.
-
-## Reference
-
-Jeremy's IT Lab — Day 1, Packet Tracer Introduction. The course supplied the exercise; the screenshot records my completed topology-building work.
