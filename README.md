@@ -6,7 +6,7 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 
 ## Start Here
 
-[Explore Day 1: Packet Tracer Introduction](labs/day-01-packet-tracer-introduction/README.md) — a two-branch topology with 12 devices, labeled endpoints, and documented connections.
+[Explore Day 1: Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) — a two-branch topology with 12 devices, labeled endpoints, and documented connections.
 
 **Current progress:** one topology-building exercise completed and documented. Screenshot evidence is available; the completed Packet Tracer file is pending. Configuration and end-to-end connectivity have not been verified for this lab.
 
@@ -14,7 +14,7 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 
 | Day | Lab | Skills demonstrated | Status | Evidence |
 | --- | --- | --- | --- | --- |
-| 01 | [Packet Tracer Introduction](labs/day-01-packet-tracer-introduction/README.md) | Device placement, labeling, topology construction, automatic cable selection | Topology complete | [Topology screenshot](labs/day-01-packet-tracer-introduction/screenshots/01-completed-network-topology.png); `.pkt` pending |
+| 01 | [Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) | Device placement, labeling, topology construction, automatic cable selection | Topology complete | [Topology screenshot](Photos/Day-01/01-completed-network-topology.png); `.pkt` pending |
 
 ## Skills Demonstrated So Far
 
@@ -33,23 +33,23 @@ Upcoming work will cover Cisco IOS, Ethernet switching, IPv4 addressing and subn
 ```text
 ccna-network-engineering-labs/
 ├── README.md
-└── labs/
-    └── day-01-packet-tracer-introduction/
-        ├── README.md
-        └── screenshots/
-            └── 01-completed-network-topology.png
+├── Photos/
+│   └── Day-01/
+│       └── 01-completed-network-topology.png
+└── Labs/
+    └── Day-01-Packet-Tracer-Introduction.md
 ```
 
-The completed `day-01-packet-tracer-introduction.pkt` will be added beside the lab README when supplied. New lab folders will be added as the work is completed.
+**[Labs](Labs/)** contains the daily writeups, named by day and topic. **[Photos](Photos/)** contains the original lab screenshots, grouped by day.
+
+Future writeups will appear directly under `Labs` as `Day-02-<Topic>.md`, `Day-03-<Topic>.md`, and so on as each lab is completed. The saved Day 1 Packet Tracer file will be added to `Labs` when supplied.
 
 ## Documentation Approach
 
-Each lab records its objectives, topology, device inventory, tasks, skills, evidence, and lessons learned. Configuration labs will also include relevant addressing tables, commands, verification output, and troubleshooting observations. Results are marked as verified only when supported by the available evidence.
-
-Screenshot names begin with a two-digit sequence and describe the result shown. Packet Tracer files use the same descriptive name as their lab folder.
+Each lab presents an overview, topology image, objectives, device inventory, completed tasks, verification, and lessons learned. Configuration labs will also include addressing tables, relevant commands, and troubleshooting results.
 
 ## Learning Resources and Credits
 
 - **Course:** Jeremy's IT Lab, Day 1 — Packet Tracer Introduction.
-- **Portfolio organization inspiration:** [TushanDorsey's Network Engineering Labs](https://github.com/TushanDorsey/Network-Engineering-Labs-CCNA-2026). The documentation here describes my own work; the reference author's configurations, results, and credentials are not used as mine.
+- **Portfolio organization inspiration:** [TushanDorsey's Network Engineering Labs](https://github.com/TushanDorsey/Network-Engineering-Labs-CCNA-2026). All lab writeups describe my own completed work.
 - **GitHub:** [Abdulaziz998](https://github.com/Abdulaziz998)

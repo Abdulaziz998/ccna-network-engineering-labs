@@ -1,6 +1,6 @@
 # Day 01 — Packet Tracer Introduction
 
-[Back to portfolio](../../README.md)
+[Back to portfolio](../README.md)
 
 **Course:** Jeremy's IT Lab  
 **Topic:** Network devices and topology construction  
@@ -13,15 +13,9 @@ I recreated a two-branch network topology in Packet Tracer, with New York and To
 
 The screenshot documents the completed layout. It does not establish a fully configured or operational routed network.
 
-## Objectives
+## Network Topology
 
-- Become familiar with the logical workspace and device selection tools.
-- Place the required routers, switches, firewalls, and endpoints.
-- Label the devices and branch locations clearly.
-- Connect the devices using **Automatically Choose Connection Type**.
-- Preserve the finished topology as evidence of the exercise.
-
-## Topology
+![Completed Packet Tracer topology showing the New York and Tokyo branches, Internet router, and attacker laptop](../Photos/Day-01/01-completed-network-topology.png)
 
 The connections visible in the submitted screenshot are:
 
@@ -33,6 +27,14 @@ PC2 ─┘                    │                         └─ SRV2
 ```
 
 The left side is labeled **New York Branch** and the right side **Tokyo Branch**. The diagram above records the actual screenshot layout, including the order of R1/FW1 and R2/FW2. The Internet device is a simulated router, and ATTACKER is a scenario label; no attack or security test is demonstrated.
+
+## Objectives
+
+- Become familiar with the logical workspace and device selection tools.
+- Place the required routers, switches, firewalls, and endpoints.
+- Label the devices and branch locations clearly.
+- Connect the devices using **Automatically Choose Connection Type**.
+- Preserve the finished topology as evidence of the exercise.
 
 ## Devices Used
 
@@ -81,9 +83,7 @@ The red indicators show that several links are down in the captured state. Their
 
 ### Completed network topology
 
-![Completed Packet Tracer topology showing the New York and Tokyo branches, Internet router, and attacker laptop](screenshots/01-completed-network-topology.png)
-
-**File:** [01-completed-network-topology.png](screenshots/01-completed-network-topology.png)
+**File:** [01-completed-network-topology.png](../Photos/Day-01/01-completed-network-topology.png)
 
 This is the original screenshot of my Packet Tracer workspace. The lesson/video screenshot is reference material and is excluded from the evidence folder.
 
@@ -91,18 +91,7 @@ This is the original screenshot of my Packet Tracer workspace. The lesson/video 
 
 **Pending:** `day-01-packet-tracer-introduction.pkt`.
 
-The completed saved file will be placed directly in this lab folder when supplied. No placeholder `.pkt` is included. Once available, download it and open it in Cisco Packet Tracer to inspect the topology; the screenshot alone cannot verify the saved file's contents.
-
-The agreed final structure is:
-
-```text
-labs/
-└── day-01-packet-tracer-introduction/
-    ├── README.md
-    ├── day-01-packet-tracer-introduction.pkt  # pending
-    └── screenshots/
-        └── 01-completed-network-topology.png
-```
+The completed saved file will be added as `Labs/day-01-packet-tracer-introduction.pkt` when supplied. Once available, download it and open it in Cisco Packet Tracer to inspect the topology.
 
 ## What I Learned
 
