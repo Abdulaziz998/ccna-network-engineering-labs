@@ -1,149 +1,283 @@
-# Day 03 — OSI Model & DHCP Packet Analysis
-
-[Back to portfolio](../README.md)
-
-**Topic:** Simulation mode, OSI layers, and DHCP  
-**Tool:** Cisco Packet Tracer  
-**Status:** Exercise completed; simulation, OSPF PDU, and PC1 release/renew command screenshots saved. Completed DHCP renewal, detailed DHCP packets, and saved `.pkt` file pending.
+# Day 03 - OSI Model & DHCP Packet Analysis
 
 ## Overview
 
-I used the supplied network to study traffic in Simulation mode and relate packet processing to the OSI model. The second task was to release and renew PC1's IP address to generate DHCP traffic for analysis.
+This lab was completed as part of my CCNA studies using Cisco Packet Tracer.
+
+The objective was to understand how data moves through the OSI model by studying network traffic and generating DHCP communication from PC1.
+
+I used Simulation mode to follow events between devices, inspected an OSPF Hello packet, and released PC1's IP address before issuing a renewal request. These activities connected the OSI model to the headers and commands used in a network.
+
+---
 
 ## Network Topology
 
-![Day 3 network and Simulation event list](../Photos/Day-03/01-simulation-mode-traffic-analysis.png)
+<p align="center">
+  <img src="../Photos/Day-03/01-simulation-mode-traffic-analysis.png" alt="Lab topology and Simulation event list" width="1000">
+</p>
+<p align="center">
+  <img src="../Photos/Day-03/02-pc1-dhcp-release-renew.png" alt="PC1 initial IP settings, address release, and renewal command" width="1000">
+</p>
+<p align="center">
+  <img src="../Photos/Day-03/03-ospf-hello-osi-layers.png" alt="OSPF Hello packet at R2 showing Layers 1, 2, and 3" width="1000">
+</p>
+
+---
+
+## Lab Objective
+
+The goal of this lab was to:
+
+* Observe packet encapsulation
+* Study DHCP communication
+* Relate network traffic to the OSI model
+* Identify Ethernet, IP, and transport-layer information
+* Generate DHCP traffic by releasing and renewing PC1's address
+* Examine source and destination addressing
+
+---
+
+## Devices Used
+
+### Client Device
+
+* PC1
+
+### Network Infrastructure
+
+* Switch SW1
+* Switch SW2
+* Router R1
+* Router R2
+
+### Server Infrastructure
+
+* SRV1 — server in the lab topology
+
+---
+
+## Network Addressing
+
+### Local Network
 
 ```text
-SRV1 ─ SW1 ─ R1 ─ R2
-        │
-       SW2 ─ PC1
+192.168.1.0/24
 ```
 
-## Objectives
+### Router Interfaces
 
-- Observe traffic moving through the network in Simulation mode.
-- Relate protocol behavior to the OSI layers involved.
-- Release and renew PC1's IP address to generate application-layer traffic.
-- Understand how DHCP data is carried inside UDP, IPv4, and Ethernet.
+```text
+R1 G0/0: 192.168.1.1
+R1 G0/1: 10.0.0.1
+R2 G0/0: 10.0.0.2
+```
 
-## Devices and Addressing
+### Server
 
-| Device | Model | Role / addressing label |
-| --- | --- | --- |
-| PC1 | PC-PT | Client; 192.168.1.10/24 before release, gateway 192.168.1.1 |
-| SRV1 | Server-PT | Server; 192.168.1.100 |
-| SW1, SW2 | Cisco 2960-24TT | Local Ethernet switching |
-| R1 | Cisco 2911 | G0/0: 192.168.1.1; G0/1: 10.0.0.1 |
-| R2 | Cisco 2911 | G0/0: 10.0.0.2 |
+```text
+SRV1: 192.168.1.100
+```
 
-Router and server addresses above are read from the topology labels. PC1’s initial settings are confirmed by its `ipconfig` output; R2’s source address is also visible in the OSPF PDU. The LAN is labeled `192.168.1.0/24`; the router-to-router network is labeled `10.0.0.0/24`.
+### PC1 Before Release
 
-## Tasks Completed
+```text
+IP Address:      192.168.1.10
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.1.1
+```
 
-1. Opened the lab in Simulation mode.
-2. Ran the simulation and followed events between the devices.
-3. Completed the PC1 release/renew task and traffic-analysis exercise.
-4. Captured the network and Simulation event list.
+### WAN Network
 
-The additional command screenshot confirms that PC1 displayed its settings, released its address, and issued `ipconfig /renew`. It stops before renewal results are displayed.
+```text
+10.0.0.0/24
+```
+
+Router and server addresses are taken from the topology labels. PC1's initial settings are visible in its command output; R2's source address is also visible in the OSPF packet.
+
+---
+
+## DHCP Communication Process
+
+On PC1, the captured commands are:
+
+```text
+ipconfig
+ipconfig /release
+ipconfig /renew
+```
+
+The first command displays PC1's initial settings. After release, the IPv4 address, subnet mask, default gateway, and DNS server display as `0.0.0.0`. The renewal command is entered, but its completed output is not yet visible in the screenshot.
+
+For a fresh lease, the usual DHCP sequence is **Discover → Offer → Request → Acknowledgment**. The following DHCP fields describe expected behavior; they are not captured header values from these screenshots. [DHCP specification, RFC 2131](https://www.rfc-editor.org/rfc/rfc2131)
+
+### Layer 3 Information
+
+An initial Discover from a client without an address normally uses:
+
+```text
+Source IP:      0.0.0.0
+Destination IP: 255.255.255.255
+```
+
+The destination is an IPv4 broadcast address. PC1's earlier address, `192.168.1.10`, is its pre-release configuration; it should not be presented as the verified source of an uncaptured Discover packet.
+
+---
+
+### Layer 4 Information
+
+DHCP client-to-server messages use:
+
+```text
+Protocol:         UDP
+Source Port:      68
+Destination Port: 67
+```
+
+These are the DHCP client and server ports. The screenshots do not yet show the DHCP PDU details needed to verify them in this run.
+
+---
 
 ## OSI Layer Analysis
 
-| Layer | Role in this exercise |
-| --- | --- |
-| 7 — Application | DHCP requests and supplies host configuration. |
-| 6 — Presentation | A conceptual layer for data representation; no separate presentation-layer protocol is demonstrated here. |
-| 5 — Session | A conceptual layer for managing sessions; no separate session-layer protocol is demonstrated here. |
-| 4 — Transport | UDP carries DHCP messages between client and server ports. |
-| 3 — Network | IPv4 provides source and destination IP addressing. |
-| 2 — Data Link | Ethernet uses MAC addresses and frames on the local network. STP is also a Layer 2 control protocol. |
-| 1 — Physical | The links carry the bits between connected interfaces. |
+### Layer 1 - Physical
 
-**Answer to the lab question:** the layers depend on the selected event. STP is Layer 2 control traffic carried over physical links. DHCP is an application-layer protocol whose messages use Layers 4, 3, 2, and 1 for delivery. A single event does not need a separate protocol at every OSI layer.
+Transmits bits across the network media.
 
-The screenshot's Type column is off-screen, so the pink envelope is not used by itself as proof of a particular protocol.
-
-## PC1 Release and Renew
-
-To repeat the exercise, open **PC1 → Desktop → Command Prompt** and run:
+The OSPF screenshot identifies the outgoing interface as:
 
 ```text
-ipconfig /release
-ipconfig /renew
-ipconfig
+GigabitEthernet0/0
 ```
 
-The first command releases the lease; the second requests configuration again. The final command displays the resulting settings. The screenshot shows an initial `ipconfig`, followed by `ipconfig /release` and `ipconfig /renew`. The final verification command above is the next check after renewal finishes.
+This is the interface on R2 carrying the selected packet.
 
-### DHCP exchange to inspect
+---
 
-For a fresh lease, the usual sequence is **Discover → Offer → Request → Acknowledgment (DORA)**. DHCP uses UDP port **68** at the client and **67** at the server. An initial Discover from a client without an address normally uses IPv4 source `0.0.0.0` and destination `255.255.255.255`; its Ethernet destination is the broadcast MAC address. Renewing an existing lease can use a shorter exchange. These are expected protocol behaviors, not fields verified in the attached screenshot. [DHCP specification, RFC 2131](https://www.rfc-editor.org/rfc/rfc2131)
+### Layer 2 - Data Link
 
-Select a DHCP event and inspect its **OSI Model** and **PDU Details** to compare the application message, UDP ports, IP addresses, and Ethernet addresses.
+Provides:
+
+* MAC addressing
+* Ethernet framing
+* Local link delivery
+
+The captured OSPF Ethernet header shows:
 
 ```text
-DHCP message → UDP datagram → IPv4 packet → Ethernet frame → transmitted bits
+Source MAC:      00E0.F970.4401
+Destination MAC: 0100.5E00.0005
 ```
 
-## Verification and Observations
+This is a multicast destination. By comparison, an initial DHCP Discover sent as an Ethernet broadcast uses destination `FFFF.FFFF.FFFF`; that DHCP frame is not shown in the supplied PDU screenshot.
 
-| Evidence | What it establishes |
-| --- | --- |
-| Simulation event list | Traffic events are being captured, with times and device transitions visible. |
-| Topology | Six devices are present and green indicators appear on the visible links. |
-| Packet envelope at SW2 | A simulated event is visible at the switch; color alone does not establish its type. |
-| PC1 commands | Initial address 192.168.1.10, mask 255.255.255.0, and gateway 192.168.1.1 are visible. Release clears the IPv4 settings to 0.0.0.0; renew is entered. |
-| DHCP details | A readable DHCP exchange and DHCP packet headers are still pending. |
-| Client address and connectivity | PC1's final lease and end-to-end connectivity are not verified by this screenshot. |
+---
 
-### Simulation panel troubleshooting
+### Layer 3 - Network
 
-The event list initially showed only some columns. The panel was opened as a separate window for more room. In this capture, a horizontal scrollbar remains visible; scrolling right exposes the remaining columns, including Type. A hidden column does not mean the simulation has stopped.
+Provides IP addressing and packet forwarding between networks.
 
-## Captured Packet Analysis: OSPF Hello
+The selected OSPF Hello at R2 shows:
 
-![OSPF Hello at R2 with OSI layers and addressing](../Photos/Day-03/03-ospf-hello-osi-layers.png)
+```text
+Source IP:      10.0.0.2
+Destination IP: 224.0.0.5
+Message:        OSPF HELLO
+```
 
-The PDU window explicitly identifies an **OSPF HELLO** originating at R2. Its outbound view shows:
+This is a captured Layer 3 control packet. The PDU panel describes multicast transmission from R2.
 
-| Field | Captured value |
-| --- | --- |
-| Layer 3 source IPv4 address | 10.0.0.2 |
-| Layer 3 destination IPv4 address | 224.0.0.5 |
-| Layer 2 source MAC address | 00E0.F970.4401 |
-| Layer 2 destination MAC address | 0100.5E00.0005 |
-| Layer 1 outgoing port | GigabitEthernet0/0 |
+---
 
-This capture demonstrates a Layer 3 control packet carried in a Layer 2 Ethernet frame over a Layer 1 interface. The panel identifies multicast transmission and leaves Layers 4–7 inactive for this event. It is OSPF evidence; DHCP requires a separate packet capture.
+### Layer 4 - Transport
 
-## Captured PC1 Commands
+Uses transport protocols and port numbers to deliver data to the appropriate service.
 
-![PC1 initial address, release result, and renew command](../Photos/Day-03/02-pc1-dhcp-release-renew.png)
+For the DHCP client request studied in this exercise:
 
-Before release, PC1 shows `192.168.1.10` with subnet mask `255.255.255.0` and default gateway `192.168.1.1`. After `ipconfig /release`, the displayed IPv4 address, mask, gateway, and DNS server are `0.0.0.0`. The next line shows `ipconfig /renew`, but no completed renewal output is visible yet. This confirms the release and renewal attempt without establishing the resulting lease.
+```text
+Protocol:             UDP
+Client Source Port:   68
+Server Destination Port: 67
+```
+
+The selected OSPF event has Layer 4 inactive in the panel. Its packet details should not be interpreted as a UDP or DHCP capture.
+
+---
+
+### Layer 7 - Application
+
+Provides application-level network services. DHCP supplies host configuration.
+
+```text
+DHCP Discover: client searches for a DHCP server
+```
+
+This describes the application message to inspect after generating DHCP traffic. A readable Discover PDU is still needed to document its actual fields in this lab.
+
+Layers 5 and 6 are part of the OSI model, but no separate session- or presentation-layer protocol is demonstrated in these captures.
+
+---
+
+## Packet Encapsulation
+
+A DHCP message is carried by lower-layer protocols before transmission:
+
+```text
+DHCP Application Data
+↓
+UDP Header
+↓
+IPv4 Header
+↓
+Ethernet Header and Trailer
+↓
+Physical Transmission
+```
+
+This process is encapsulation. The captured OSPF event illustrates a different case: its active outbound layers are Layers 3, 2, and 1.
+
+---
+
+## Key Concepts Learned
+
+### Broadcast Communication
+
+A DHCP client without an address can broadcast to locate a server on its local network. Broadcast and multicast addresses serve different purposes; the captured OSPF Hello uses multicast.
+
+### DHCP Process
+
+DHCP can supply:
+
+* IP address
+* Subnet mask
+* Default gateway
+* DNS server information
+
+The gateway supports communication beyond the local subnet, and DNS supports name resolution. Neither is required for every local IP exchange. A renewal of an existing lease may use a shorter exchange than fresh allocation.
+
+### OSI Model Application
+
+Different events involve different protocols and layers. The OSPF capture provides direct evidence of Layers 1–3. DHCP adds application and transport information, which should be checked in its own PDU details.
+
+---
 
 ## Skills Practiced
 
-- Using Simulation mode to follow device-to-device events.
-- Mapping protocol functions to OSI layers.
-- Generating DHCP traffic through a client release/renew exercise.
-- Understanding encapsulation and broadcast addressing.
-- Distinguishing protocol explanations from captured packet evidence.
+* OSI model analysis
+* DHCP release and renewal commands
+* Packet encapsulation concepts
+* Ethernet and IPv4 header inspection
+* OSPF Hello packet inspection
+* UDP and broadcast fundamentals
+* Cisco Packet Tracer Simulation mode
+* Distinguishing observed results from expected protocol behavior
+
+---
 
 ## What I Learned
 
-- Background network traffic can appear without manually sending a ping.
-- Application-layer traffic depends on lower layers to reach another device.
-- Event details provide stronger evidence than an envelope's color.
-- A useful packet-analysis record includes the message type and header fields as well as the topology.
+This lab helped connect networking theory to visible packet information. Inspecting the OSPF Hello showed how a Layer 3 packet is carried inside an Ethernet frame and sent through a physical interface.
 
-## Evidence
+Releasing PC1's address showed the immediate change in its IP settings. Issuing the renewal command provided the next step for studying DHCP traffic and application-layer encapsulation.
 
-- [01-simulation-mode-traffic-analysis.png](../Photos/Day-03/01-simulation-mode-traffic-analysis.png) — original simulation screenshot.
-- `Labs/day-03-osi-model.pkt` — pending the completed saved file.
-
-- [02-pc1-dhcp-release-renew.png](../Photos/Day-03/02-pc1-dhcp-release-renew.png) — initial address, release result, and renewal command.
-- [03-ospf-hello-osi-layers.png](../Photos/Day-03/03-ospf-hello-osi-layers.png) — OSPF Hello and Layers 1–3.
-
-Remaining evidence can be added as `04-pc1-renewed-ip-address.png` and `05-dhcp-pdu-details.png` when captured.
+The saved evidence confirms the initial client settings, successful release, renewal attempt, and OSPF packet details. The completed renewal output and DHCP PDU details remain to be captured. The completed Packet Tracer file can be added as `Labs/day-03-osi-model.pkt` when supplied.
