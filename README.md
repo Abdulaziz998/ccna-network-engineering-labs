@@ -8,15 +8,15 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 
 [Explore Day 1: Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) — a two-branch topology with 12 devices, labeled endpoints, and documented connections.
 
-**Current progress:** two lab writeups with screenshot evidence: topology construction and connecting devices. Saved Packet Tracer files and end-to-end connectivity verification are pending.
+**Current progress:** three lab writeups with screenshot evidence: topology construction, connecting devices, and OSI/DHCP traffic analysis. Saved Packet Tracer files and end-to-end connectivity verification are pending.
 
 ## Lab Progress
 
 | Day | Lab | Skills demonstrated | Status | Evidence |
 | --- | --- | --- | --- | --- |
 | 01 | [Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) | Device placement, labeling, topology construction, automatic cable selection | Topology complete | [Topology screenshot](Photos/Day-01/01-completed-network-topology.png); `.pkt` pending |
-
 | 02 | [Connecting Devices](Labs/Day-02-Connecting-Devices.md) | Cable selection, device connections, distance considerations | Cabling documented | [Topology screenshot](Photos/Day-02/01-completed-network-topology.png); `.pkt` pending |
+| 03 | [OSI Model & DHCP Packet Analysis](Labs/Day-03-OSI-Model-DHCP-Packet-Analysis.md) | Simulation mode, OSI layers, DHCP release/renew | Exercise complete; detailed DHCP evidence pending | [Simulation screenshot](Photos/Day-03/01-simulation-mode-traffic-analysis.png); `.pkt` pending |
 
 ## Skills Demonstrated So Far
 
@@ -24,6 +24,7 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 - Place and identify routers, switches, firewalls, PCs, servers, and a laptop.
 - Arrange and label a two-branch network topology.
 - Connect devices using automatic connection selection.
+- Analyze simulated traffic and relate DHCP encapsulation to the OSI model.
 - Document visible results and distinguish a constructed topology from verified connectivity.
 
 ## Planned Learning
@@ -38,16 +39,19 @@ ccna-network-engineering-labs/
 ├── Photos/
 │   ├── Day-01/
 │   │   └── 01-completed-network-topology.png
-│   └── Day-02/
-│       └── 01-completed-network-topology.png
+│   ├── Day-02/
+│   │   └── 01-completed-network-topology.png
+│   └── Day-03/
+│       └── 01-simulation-mode-traffic-analysis.png
 └── Labs/
     ├── Day-01-Packet-Tracer-Introduction.md
-    └── Day-02-Connecting-Devices.md
+    ├── Day-02-Connecting-Devices.md
+    └── Day-03-OSI-Model-DHCP-Packet-Analysis.md
 ```
 
 **[Labs](Labs/)** contains the daily writeups, named by day and topic. **[Photos](Photos/)** contains the original lab screenshots, grouped by day.
 
-Future writeups will appear directly under `Labs` as `Day-03-<Topic>.md`, `Day-04-<Topic>.md`, and so on as each lab is completed. The saved Day 1 Packet Tracer file will be added to `Labs` when supplied.
+Future writeups will appear directly under `Labs` as `Day-04-<Topic>.md`, `Day-05-<Topic>.md`, and so on as each lab is completed. The saved Day 1 Packet Tracer file will be added to `Labs` when supplied.
 
 ## Documentation Approach
 
