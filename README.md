@@ -8,13 +8,15 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 
 [Explore Day 1: Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) — a two-branch topology with 12 devices, labeled endpoints, and documented connections.
 
-**Current progress:** one topology-building exercise completed and documented. Screenshot evidence is available; the completed Packet Tracer file is pending. Configuration and end-to-end connectivity have not been verified for this lab.
+**Current progress:** two lab writeups with screenshot evidence: topology construction and connecting devices. Saved Packet Tracer files and end-to-end connectivity verification are pending.
 
 ## Lab Progress
 
 | Day | Lab | Skills demonstrated | Status | Evidence |
 | --- | --- | --- | --- | --- |
 | 01 | [Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) | Device placement, labeling, topology construction, automatic cable selection | Topology complete | [Topology screenshot](Photos/Day-01/01-completed-network-topology.png); `.pkt` pending |
+
+| 02 | [Connecting Devices](Labs/Day-02-Connecting-Devices.md) | Cable selection, device connections, distance considerations | Cabling documented | [Topology screenshot](Photos/Day-02/01-completed-network-topology.png); `.pkt` pending |
 
 ## Skills Demonstrated So Far
 
@@ -34,15 +36,18 @@ Upcoming work will cover Cisco IOS, Ethernet switching, IPv4 addressing and subn
 ccna-network-engineering-labs/
 ├── README.md
 ├── Photos/
-│   └── Day-01/
+│   ├── Day-01/
+│   │   └── 01-completed-network-topology.png
+│   └── Day-02/
 │       └── 01-completed-network-topology.png
 └── Labs/
-    └── Day-01-Packet-Tracer-Introduction.md
+    ├── Day-01-Packet-Tracer-Introduction.md
+    └── Day-02-Connecting-Devices.md
 ```
 
 **[Labs](Labs/)** contains the daily writeups, named by day and topic. **[Photos](Photos/)** contains the original lab screenshots, grouped by day.
 
-Future writeups will appear directly under `Labs` as `Day-02-<Topic>.md`, `Day-03-<Topic>.md`, and so on as each lab is completed. The saved Day 1 Packet Tracer file will be added to `Labs` when supplied.
+Future writeups will appear directly under `Labs` as `Day-03-<Topic>.md`, `Day-04-<Topic>.md`, and so on as each lab is completed. The saved Day 1 Packet Tracer file will be added to `Labs` when supplied.
 
 ## Documentation Approach
 
