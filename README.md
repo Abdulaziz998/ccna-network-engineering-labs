@@ -16,7 +16,7 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 | --- | --- | --- | --- | --- |
 | 01 | [Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) | Device placement, labeling, topology construction, automatic cable selection | Topology complete | [Topology screenshot](Photos/Day-01/01-completed-network-topology.png); `.pkt` pending |
 | 02 | [Connecting Devices](Labs/Day-02-Connecting-Devices.md) | Cable selection, device connections, distance considerations | Cabling documented | [Topology screenshot](Photos/Day-02/01-completed-network-topology.png); `.pkt` pending |
-| 03 | [OSI Model & DHCP Packet Analysis](Labs/Day-03-OSI-Model-DHCP-Packet-Analysis.md) | Simulation mode, OSI layers, DHCP release/renew | Exercise complete; detailed DHCP evidence pending | [Simulation screenshot](Photos/Day-03/01-simulation-mode-traffic-analysis.png); `.pkt` pending |
+| 03 | [OSI Model & DHCP Packet Analysis](Labs/Day-03-OSI-Model-DHCP-Packet-Analysis.md) | Simulation mode, OSPF PDU analysis, DHCP release/renew | Exercise complete; renewal result pending | [Simulation screenshot](Photos/Day-03/01-simulation-mode-traffic-analysis.png); `.pkt` pending |
 
 ## Skills Demonstrated So Far
 
@@ -42,7 +42,9 @@ ccna-network-engineering-labs/
 │   ├── Day-02/
 │   │   └── 01-completed-network-topology.png
 │   └── Day-03/
-│       └── 01-simulation-mode-traffic-analysis.png
+│       ├── 01-simulation-mode-traffic-analysis.png
+│       ├── 02-pc1-dhcp-release-renew.png
+│       └── 03-ospf-hello-osi-layers.png
 └── Labs/
     ├── Day-01-Packet-Tracer-Introduction.md
     ├── Day-02-Connecting-Devices.md

@@ -4,7 +4,7 @@
 
 **Topic:** Simulation mode, OSI layers, and DHCP  
 **Tool:** Cisco Packet Tracer  
-**Status:** Exercise completed; simulation screenshot saved. Detailed DHCP packet evidence and saved `.pkt` file pending.
+**Status:** Exercise completed; simulation, OSPF PDU, and PC1 release/renew command screenshots saved. Completed DHCP renewal, detailed DHCP packets, and saved `.pkt` file pending.
 
 ## Overview
 
@@ -31,13 +31,13 @@ SRV1 ─ SW1 ─ R1 ─ R2
 
 | Device | Model | Role / addressing label |
 | --- | --- | --- |
-| PC1 | PC-PT | Client; assigned address not visible in this screenshot |
+| PC1 | PC-PT | Client; 192.168.1.10/24 before release, gateway 192.168.1.1 |
 | SRV1 | Server-PT | Server; 192.168.1.100 |
 | SW1, SW2 | Cisco 2960-24TT | Local Ethernet switching |
 | R1 | Cisco 2911 | G0/0: 192.168.1.1; G0/1: 10.0.0.1 |
 | R2 | Cisco 2911 | G0/0: 10.0.0.2 |
 
-The addresses above are read from the topology labels, not verified configuration output. The LAN is labeled `192.168.1.0/24`; the router-to-router network is labeled `10.0.0.0/24`.
+Router and server addresses above are read from the topology labels. PC1’s initial settings are confirmed by its `ipconfig` output; R2’s source address is also visible in the OSPF PDU. The LAN is labeled `192.168.1.0/24`; the router-to-router network is labeled `10.0.0.0/24`.
 
 ## Tasks Completed
 
@@ -46,7 +46,7 @@ The addresses above are read from the topology labels, not verified configuratio
 3. Completed the PC1 release/renew task and traffic-analysis exercise.
 4. Captured the network and Simulation event list.
 
-Completion of the release/renew task is recorded from my lab completion report. The screenshot preserves the simulation view, rather than command output or the complete DHCP exchange.
+The additional command screenshot confirms that PC1 displayed its settings, released its address, and issued `ipconfig /renew`. It stops before renewal results are displayed.
 
 ## OSI Layer Analysis
 
@@ -74,7 +74,7 @@ ipconfig /renew
 ipconfig
 ```
 
-The first command releases the lease; the second requests configuration again. The final command displays the resulting settings. These are reproduction commands, not captured console output.
+The first command releases the lease; the second requests configuration again. The final command displays the resulting settings. The screenshot shows an initial `ipconfig`, followed by `ipconfig /release` and `ipconfig /renew`. The final verification command above is the next check after renewal finishes.
 
 ### DHCP exchange to inspect
 
@@ -93,12 +93,35 @@ DHCP message → UDP datagram → IPv4 packet → Ethernet frame → transmitted
 | Simulation event list | Traffic events are being captured, with times and device transitions visible. |
 | Topology | Six devices are present and green indicators appear on the visible links. |
 | Packet envelope at SW2 | A simulated event is visible at the switch; color alone does not establish its type. |
-| DHCP details | Command output, a readable DHCP event sequence, and packet headers are not included in this capture. |
+| PC1 commands | Initial address 192.168.1.10, mask 255.255.255.0, and gateway 192.168.1.1 are visible. Release clears the IPv4 settings to 0.0.0.0; renew is entered. |
+| DHCP details | A readable DHCP exchange and DHCP packet headers are still pending. |
 | Client address and connectivity | PC1's final lease and end-to-end connectivity are not verified by this screenshot. |
 
 ### Simulation panel troubleshooting
 
 The event list initially showed only some columns. The panel was opened as a separate window for more room. In this capture, a horizontal scrollbar remains visible; scrolling right exposes the remaining columns, including Type. A hidden column does not mean the simulation has stopped.
+
+## Captured Packet Analysis: OSPF Hello
+
+![OSPF Hello at R2 with OSI layers and addressing](../Photos/Day-03/03-ospf-hello-osi-layers.png)
+
+The PDU window explicitly identifies an **OSPF HELLO** originating at R2. Its outbound view shows:
+
+| Field | Captured value |
+| --- | --- |
+| Layer 3 source IPv4 address | 10.0.0.2 |
+| Layer 3 destination IPv4 address | 224.0.0.5 |
+| Layer 2 source MAC address | 00E0.F970.4401 |
+| Layer 2 destination MAC address | 0100.5E00.0005 |
+| Layer 1 outgoing port | GigabitEthernet0/0 |
+
+This capture demonstrates a Layer 3 control packet carried in a Layer 2 Ethernet frame over a Layer 1 interface. The panel identifies multicast transmission and leaves Layers 4–7 inactive for this event. It is OSPF evidence; DHCP requires a separate packet capture.
+
+## Captured PC1 Commands
+
+![PC1 initial address, release result, and renew command](../Photos/Day-03/02-pc1-dhcp-release-renew.png)
+
+Before release, PC1 shows `192.168.1.10` with subnet mask `255.255.255.0` and default gateway `192.168.1.1`. After `ipconfig /release`, the displayed IPv4 address, mask, gateway, and DNS server are `0.0.0.0`. The next line shows `ipconfig /renew`, but no completed renewal output is visible yet. This confirms the release and renewal attempt without establishing the resulting lease.
 
 ## Skills Practiced
 
@@ -120,4 +143,7 @@ The event list initially showed only some columns. The panel was opened as a sep
 - [01-simulation-mode-traffic-analysis.png](../Photos/Day-03/01-simulation-mode-traffic-analysis.png) — original simulation screenshot.
 - `Labs/day-03-osi-model.pkt` — pending the completed saved file.
 
-Additional evidence can be added as `02-pc1-dhcp-release-renew.png` and `03-dhcp-pdu-details.png` when captured.
+- [02-pc1-dhcp-release-renew.png](../Photos/Day-03/02-pc1-dhcp-release-renew.png) — initial address, release result, and renewal command.
+- [03-ospf-hello-osi-layers.png](../Photos/Day-03/03-ospf-hello-osi-layers.png) — OSPF Hello and Layers 1–3.
+
+Remaining evidence can be added as `04-pc1-renewed-ip-address.png` and `05-dhcp-pdu-details.png` when captured.
