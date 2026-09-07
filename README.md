@@ -48,7 +48,8 @@ ccna-network-engineering-labs/
 │   │   ├── 02-pc1-dhcp-release-renew.png
 │   │   └── 03-ospf-hello-osi-layers.png
 │   └── Day-04/
-│       └── 01-r1-password-configuration.png
+│       ├── 01-r1-password-configuration.png
+│       └── reference-examples/
 └── Labs/
     ├── Day-01-Packet-Tracer-Introduction.md
     ├── Day-02-Connecting-Devices.md
