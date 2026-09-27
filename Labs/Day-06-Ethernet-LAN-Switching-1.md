@@ -116,5 +116,4 @@ I also separated two kinds of stored information: hosts use ARP to map IPv4 addr
 
 The six supplied images are stored in `Photos/Day-06`, in topology-to-verification order. Their embedded headings and captions are preserved as supplied; the report above is independently written around the visible results. The topology and initial-conditions images overlap, so the second is linked rather than repeated at full size.
 
-The saved `Labs/day-06-ethernet-lan-switching-1.pkt` file is pending. Day 5 is not marked complete by this update.
 
