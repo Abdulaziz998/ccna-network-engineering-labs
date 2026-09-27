@@ -118,4 +118,3 @@ The six supplied images are stored in `Photos/Day-06`, in topology-to-verificati
 
 The saved `Labs/day-06-ethernet-lan-switching-1.pkt` file is pending. Day 5 is not marked complete by this update.
 
-Structure reference: [TushanDorsey's Day 6 lab](https://github.com/TushanDorsey/Network-Engineering-Labs-CCNA-2026/blob/main/Labs/Day-06-Ethernet-LAN-Switching-1.md).
