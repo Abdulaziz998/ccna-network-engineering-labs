@@ -8,7 +8,7 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 
 [Explore Day 1: Packet Tracer Introduction](Labs/Day-01-Packet-Tracer-Introduction.md) — a two-branch topology with 12 devices, labeled endpoints, and documented connections.
 
-**Current progress:** four lab writeups with screenshot evidence: topology construction, connecting devices, OSI/DHCP analysis, and basic device security. Saved Packet Tracer files and end-to-end connectivity verification are pending.
+**Current progress:** five lab writeups with screenshot evidence: topology construction, connecting devices, OSI/DHCP analysis, basic device security, and Ethernet switching. Saved Packet Tracer files are pending. Verification results are recorded separately for each lab.
 
 ## Lab Progress
 
@@ -18,6 +18,7 @@ I am building practical networking skills through Jeremy's IT Lab and documentin
 | 02 | [Connecting Devices](Labs/Day-02-Connecting-Devices.md) | Cable selection, device connections, distance considerations | Cabling documented | [Topology screenshot](Photos/Day-02/01-completed-network-topology.png); `.pkt` pending |
 | 03 | [OSI Model & DHCP Packet Analysis](Labs/Day-03-OSI-Model-DHCP-Packet-Analysis.md) | Simulation mode, OSPF PDU analysis, DHCP release/renew | Exercise complete; renewal result pending | [Simulation screenshot](Photos/Day-03/01-simulation-mode-traffic-analysis.png); `.pkt` pending |
 | 04 | [Basic Device Security](Labs/Day-04-Basic-Device-Security.md) | CLI modes, enable credentials, configuration saves | R1 verified; SW1 evidence pending | [R1 screenshot](Photos/Day-04/01-r1-password-configuration.png) and CLI excerpts; `.pkt` pending |
+| 06 | [Ethernet LAN Switching](Labs/Day-06-Ethernet-LAN-Switching-1.md) | ARP/ICMP analysis, MAC learning, table clearing | Ping and table checks verified | [Screenshots](Photos/Day-06/); `.pkt` pending |
 
 ## Skills Demonstrated So Far
 
@@ -47,19 +48,21 @@ ccna-network-engineering-labs/
 │   │   ├── 01-simulation-mode-traffic-analysis.png
 │   │   ├── 02-pc1-dhcp-release-renew.png
 │   │   └── 03-ospf-hello-osi-layers.png
-│   └── Day-04/
-│       ├── 01-r1-password-configuration.png
-│       └── reference-examples/
+│   ├── Day-04/
+│   │   ├── 01-r1-password-configuration.png
+│   │   └── reference-examples/
+│   └── Day-06/  (six screenshots)
 └── Labs/
     ├── Day-01-Packet-Tracer-Introduction.md
     ├── Day-02-Connecting-Devices.md
     ├── Day-03-OSI-Model-DHCP-Packet-Analysis.md
-    └── Day-04-Basic-Device-Security.md
+    ├── Day-04-Basic-Device-Security.md
+    └── Day-06-Ethernet-LAN-Switching-1.md
 ```
 
 **[Labs](Labs/)** contains the daily writeups, named by day and topic. **[Photos](Photos/)** contains the original lab screenshots, grouped by day.
 
-Future writeups will appear directly under `Labs` as `Day-05-<Topic>.md`, `Day-06-<Topic>.md`, and so on as each lab is completed. The saved Day 1 Packet Tracer file will be added to `Labs` when supplied.
+New writeups appear directly under `Labs` by course day and topic. Day 5 has not been documented; numbering follows the course rather than implying every preceding lab is complete. The saved Day 1 Packet Tracer file will be added to `Labs` when supplied.
 
 ## Documentation Approach
 
