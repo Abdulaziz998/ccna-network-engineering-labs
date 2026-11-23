@@ -1,4 +1,4 @@
-# Day 03 · Following Traffic Through the OSI Layers
+# Lab 03 · Following Traffic Through the OSI Layers
 
 [← Lab portfolio](../README.md)
 
