@@ -1,4 +1,4 @@
-# Day 02 — Connecting Network Devices
+# Lab 02 — Connecting Network Devices
 
 [Back to portfolio](../README.md)
 
