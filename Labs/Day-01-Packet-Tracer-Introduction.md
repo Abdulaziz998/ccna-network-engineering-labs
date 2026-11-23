@@ -1,4 +1,4 @@
-# Day 01 — Packet Tracer Introduction
+# Lab 01 — Packet Tracer Introduction
 
 [Back to portfolio](../README.md)
 
