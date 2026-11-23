@@ -1,4 +1,4 @@
-# Day 06 · Tracing Frames Across Two Switches
+# Lab 06 · Tracing Frames Across Two Switches
 
 [← Lab portfolio](../README.md)
 
