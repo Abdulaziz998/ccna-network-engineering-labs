@@ -1,4 +1,4 @@
-# Day 04 · Basic Device Security
+# Lab 04 · Basic Device Security
 
 [← Lab portfolio](../README.md)
 
